@@ -1,0 +1,20 @@
+
+site_name: Alison's Learnings
+site_description: Lightweight public wiki for daily learnings
+site_url: https://<your-username>.github.io/<your-repo>/
+nav:
+  - Home: index.md
+  - Notes:
+      - 2026-01-15: notes/2026-01-15.md
+theme:
+  name: material
+  features:
+    - navigation.instant
+    - navigation.tracking
+    - content.code.copy
+markdown_extensions:
+  - admonition
+  - toc:
+      permalink: true
+  - tables
+  - codehilite
