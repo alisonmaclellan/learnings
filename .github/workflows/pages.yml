@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
   pages: write
   id-token: write
 
@@ -21,6 +21,16 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+      - name: Generate navigation
+        shell: pwsh
+        run: ./scripts/generate-nav.ps1
+      - name: Commit updated nav
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add mkdocs.yml
+          git diff --staged --quiet || git commit -m "Auto-update navigation"
+          git push
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
